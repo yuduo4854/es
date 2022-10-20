@@ -1,0 +1,19 @@
+{
+    "name": "spark/es",
+    "description": "first composer",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Spark\\Es\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "yuduo"
+        }
+    ],
+    "require": {
+        "elasticsearch/elasticsearch": "~6.0"
+    }
+}
