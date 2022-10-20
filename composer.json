@@ -1,5 +1,5 @@
 {
-    "name": "spark/es",
+    "name": "yuduo/es",
     "description": "first composer",
     "type": "library",
     "license": "MIT",
