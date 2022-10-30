@@ -1,29 +1,15 @@
 # es
 fisrt composer
 
+## 七牛云composer安装
+composer require qiniu/php-sdk
 
-
-## 安装
-
-* 推荐使用 `composer` 进行安装。可以使用 composer.json 声明依赖，或者运行下面的命令。SDK 包已经放到这里 [`qiniu/php-sdk`][install-packagist] 。
-```bash
-$ composer require qiniu/php-sdk
-```
-* 直接下载安装，SDK 没有依赖其他第三方库，但需要参照 composer 的 autoloader，增加一个自己的 autoloader 程序。
-
-## 运行环境
-
-| Qiniu SDK版本 | PHP 版本 |
-|:--------------------:|:---------------------------:|
-|          7.x         |  cURL extension,   5.3 - 5.6,7.0 |
-|          6.x         |  cURL extension,   5.2 - 5.6 |
-
-## 使用方法
-
-### 上传
+### 多文件上传
 ```php
-use Qiniu\Storage\UploadManager;
+// 引入鉴权类
 use Qiniu\Auth;
+// 引入上传类
+use Qiniu\Storage\UploadManager;
 ...
     //获取到多条图片的本地路径
         $file=$request->file('file')->getPathname();
@@ -56,19 +42,34 @@ use Qiniu\Auth;
 ```
 
 
-## 测试
-
-let image=res.detail.all;
-    let imageAll=this.data.file;
-    image.map(itme=>{
-      wx.uploadFile({
-        filePath: itme,
-        name: 'file',
-        url: '',
-        success:res=>{
-          console.log(res);
-        }
+## 小程序端 文件上传
+```php 
+...
+      //获取到要上传的文件
+      let image=res.detail.all;
+      //通过image.map
+      image.map(itme=>{
+        wx.uploadFile({
+          filePath: itme,
+          name: 'file',
+          url: '', //自己的域名 方法
+          success:res=>{
+            console.log(res);
+          }
+        })
       })
-    })
+...
+```
 
-## 常见问题
+
+## 定时任务 
+php artisan make:command （文件名称）
+
+## 进入command文件中
+```php
+//在handle类中记录日志
+Log::info('当前时间'.date('Y-m-d H:i:s'));
+//进入Kernel.php文件调用生成的文件
+$schedule->command('command:name')->everyMinute(); //这个是每分钟执行一次  可以在laravel8 官方手册中查询 任务调度 Shell 调度命令中查看命令进行更改
+//通过php artisan schedule:work命令执行（一直执行，手动停止）
+//php artisan schedule:run两个命令不同（执行一次）
