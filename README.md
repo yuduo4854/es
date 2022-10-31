@@ -4,11 +4,11 @@ This is my fisrt composer
 
 # 适用于laravel
 # Tp还未测试
-1.七牛云composer安装命令
-2.云存储的七牛云上传
-3.小程序端多文件上传
-4.定时任务命令
-5.Redis缓存技术 如何设置过期时间
+1. 七牛云composer安装命令
+2. 云存储的七牛云上传
+3. 小程序端多文件上传
+4. 定时任务命令
+5. Redis缓存技术 如何设置过期时间
 
 ## 七牛云composer安装
 composer require qiniu/php-sdk
