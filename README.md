@@ -1,5 +1,14 @@
-# es
-fisrt composer
+# ----------简介-----------
+
+This is my fisrt composer
+
+# 适用于laravel
+# Tp还未测试
+1.七牛云composer安装命令
+2.云存储的七牛云上传
+3.小程序端多文件上传
+4.定时任务命令
+5.Redis缓存技术 如何设置过期时间
 
 ## 七牛云composer安装
 composer require qiniu/php-sdk
@@ -67,9 +76,30 @@ php artisan make:command （文件名称）
 
 ## 进入command文件中
 ```php
+...
 //在handle类中记录日志
+
 Log::info('当前时间'.date('Y-m-d H:i:s'));
+
 //进入Kernel.php文件调用生成的文件
+
 $schedule->command('command:name')->everyMinute(); //这个是每分钟执行一次  可以在laravel8 官方手册中查询 任务调度 Shell 调度命令中查看命令进行更改
 //通过php artisan schedule:work命令执行（一直执行，手动停止）
+
 //php artisan schedule:run两个命令不同（执行一次）
+...
+```
+
+
+
+
+
+## Redis 缓存技术
+```php
+...
+//将数据存入 redis缓存中 
+  Redis:: Lpush($name,$uid)
+//将同一个名称的数据设置一个过期时间
+  Redis::expire($name,30)
+...
+```
