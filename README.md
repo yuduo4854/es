@@ -96,10 +96,12 @@ $schedule->command('command:name')->everyMinute(); //这个是每分钟执行一
 
 ## Redis 缓存技术
 ```php
-...
-//将数据存入 redis缓存中 
+... 
+//将数据存入 redis缓存中  左存储
   Redis:: Lpush($name,$uid)
 //将同一个名称的数据设置一个过期时间
   Redis::expire($name,30)
+//从redis 缓存中获取redis数据  数据生成的格式是为数组形式 后面两个参数是 从下标为0 的开始 到 10 结束
+  Redis::Lrange($name,0,10);
 ...
 ```
