@@ -1,0 +1,15 @@
+<view>
+<view>
+<view wx:for="{{records}}">
+<view class="{{item.user}}">
+<text >{{item.user}}</text>
+<image src="../image/3.png" class="one"></image>
+<text>{{item.msg}}</text>
+</view>
+</view>
+</view>
+<form bindsubmit="sendMyMsg" >
+<input type="text" value="{{value}}" name="text"/>
+<button size="mini" type="default" form-type="submit">发送</button>
+</form>
+</view>
