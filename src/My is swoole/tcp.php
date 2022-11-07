@@ -28,7 +28,6 @@ $ws->on('Message', function ($ws, $frame) use ($redis){
             // code...
             $redis->set($data['my'],$frame->fd);
             echo($data['my']);
-            break;
 
         case 'send':
             // code...
@@ -36,6 +35,7 @@ $ws->on('Message', function ($ws, $frame) use ($redis){
             echo($to);
             // print_r($to);
             // echo($to);
+            break;
             $msg = [
                 'msg'=>$data['data'],
                 'name'=>$data['my']
