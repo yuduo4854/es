@@ -1,17 +1,16 @@
 <?php
 //创建WebSocket Server对象，监听0.0.0.0:9502端口
-#更改端口号
 $ws = new Swoole\WebSocket\Server('0.0.0.0', 9509);
 
 $redis = new Redis();
 $redis->connect('127.0.0.1','6379');
+$redis->auth('123456'); //密码验证
 //监听WebSocket连接打开事件
 $ws->on('Open', function ($ws, $request) {
-    $ws->push($request->fd, json_encode("心跳已连接",true));
+    $ws->push($request->fd, json_encode("hello, welcome",true));
     // print_r('连接成功');
 });
-$ws->set([
-    'heartbeat_idle_time'      => 60, // 表示一个连接如果60秒内未向服务器发送任何数据，此连接将被强制关闭
+$ws->set([    'heartbeat_idle_time'      => 60, // 表示一个连接如果60秒内未向服务器发送任何数据，此连接将被强制关闭
     'heartbeat_check_interval' => 60,  // 表示每60秒遍历一次
     'worker_num' => 4,         //设置启动的worker进程数。【默认值：CPU 核数】
     'max_request' => 10000,    //设置每个worker进程的最大任务数。【默认值：0 即不会退出进程】
@@ -28,6 +27,7 @@ $ws->on('Message', function ($ws, $frame) use ($redis){
             // code...
             $redis->set($data['my'],$frame->fd);
             echo($data['my']);
+            break;
 
         case 'send':
             // code...
@@ -35,9 +35,7 @@ $ws->on('Message', function ($ws, $frame) use ($redis){
             echo($to);
             // print_r($to);
             // echo($to);
-            break;
-            $msg = [
-                'msg'=>$data['data'],
+            $msg = [                'msg'=>$data['data'],
                 'name'=>$data['my']
             ];
 
