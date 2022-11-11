@@ -9,6 +9,7 @@ This is my fisrt composer
 3. 小程序端多文件上传
 4. 定时任务命令
 5. Redis缓存技术 如何设置过期时间
+6. dcat admin 云存储
 
 ## 七牛云composer安装
 composer require qiniu/php-sdk
@@ -109,5 +110,14 @@ $schedule->command('command:name')->everyMinute(); //这个是每分钟执行一
 //删除缓存
   Redis::del($name);
 
+...
+```
+
+## dcat admin 云存储
+```php
+···
+//命令：composer require zgldh/qiniu-laravel-storage:0.10.3
+//config/app.php 里面的 providers 数组， 
+//加上一行 zgldh\QiniuStorage\QiniuFilesystemServiceProvider::class
 ...
 ```
