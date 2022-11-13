@@ -116,8 +116,15 @@ $schedule->command('command:name')->everyMinute(); //这个是每分钟执行一
 ## dcat admin 云存储
 ```php
 ···
+
 //命令：composer require zgldh/qiniu-laravel-storage:0.10.3
 //config/app.php 里面的 providers 数组， 
 //加上一行 zgldh\QiniuStorage\QiniuFilesystemServiceProvider::class
+
+//根据dcat admin 文档中的提示一步步进行
+
+//  autoUpload : 自动上传  添加完图片后自己进行上传
+//  uniqueName : 让名称变成唯一的 名称加密
+//  saveFullUrl : 让图片的链接加上 外链接的前缀  如： http://rjwf15hkd.hn-bkt.clouddn.com/file/a57143fb044020a1fde2f329eea5834b.jpg
 ...
 ```
