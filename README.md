@@ -10,6 +10,7 @@ This is my fisrt composer
 4. 定时任务命令
 5. Redis缓存技术 如何设置过期时间
 6. dcat admin 云存储
+7. 正则验证规则
 
 ## 七牛云composer安装
 composer require qiniu/php-sdk
@@ -102,10 +103,9 @@ $schedule->command('command:name')->everyMinute(); //这个是每分钟执行一
   Redis:: Lpush($name,$uid)
 //设置当天剩余时间
   strtotime(date('Y-m-d'))+ 24*3600 - time();
-//将同一个名称的数据设置一个过期时间
+//设置过期时间
   Redis::expire($name,30)
-
-//从redis 缓存中获取redis数据  数据生成的格式是为数组形式 后面两个参数是 从下标为0 的开始 到 10 结束
+//去除redis值
   Redis::Lrange($name,0,10);
 //删除缓存
   Redis::del($name);
@@ -126,5 +126,15 @@ $schedule->command('command:name')->everyMinute(); //这个是每分钟执行一
 //  autoUpload : 自动上传  添加完图片后自己进行上传
 //  uniqueName : 让名称变成唯一的 名称加密
 //  saveFullUrl : 让图片的链接加上 外链接的前缀  如： http://rjwf15hkd.hn-bkt.clouddn.com/file/a57143fb044020a1fde2f329eea5834b.jpg
+...
+```
+
+## 正则验证规则
+```php
+···
+  //前端小程序 正则验证
+  /^1[34578]\d{9}$/.test(phone)
+  //后端 php正则验证
+  preg_match("/^1[34578]\d{9}$/",$phone)
 ...
 ```
