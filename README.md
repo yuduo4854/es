@@ -99,7 +99,7 @@ $schedule->command('command:name')->everyMinute(); //这个是每分钟执行一
 ## Redis 缓存技术
 ```php
 ... 
-//将数据存入 redis缓存中  左存储
+//将数据存入 redis缓存中  左存储 队列
   Redis:: Lpush($name,$uid)
 //设置当天剩余时间
   strtotime(date('Y-m-d'))+ 24*3600 - time();
@@ -110,6 +110,11 @@ $schedule->command('command:name')->everyMinute(); //这个是每分钟执行一
 //删除缓存
   Redis::del($name);
 
+//哈希redis  
+  Redis:: Hset  //单个存储
+  Redis:: Hmset //批量存储
+  Redis:: Hget  //取出value值
+  Redis:: Hgetall //取出全部值
 ...
 ```
 
